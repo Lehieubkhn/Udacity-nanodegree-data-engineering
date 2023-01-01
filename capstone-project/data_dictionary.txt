@@ -1,0 +1,78 @@
+================================== Data Dictionary ==================================
+
+
+======== dim_airport table ========
+ - ident: Unique identifier (PK)
+ - type: Airport type
+ - name: Airport name
+ - elevation_ft: Airport altitude
+ - iso_country: ISO Code of the airport's country
+ - iso_region: ISO Code for the airport's region
+ - municipality: City/Municipality where the airport is located
+ - gps_code: Airport GPS Code
+ - iata_code: Airport IATA Code
+ - coordinates: Airport coordinates
+ 
+ 
+======== dim_status table ========
+ - status_flag_id: Unique identifier (PK)
+ - arrival_flag: Arrival Flag - admitted or paroled into the U.S.
+ - departure_flag: Departure Flag - Departed, lost I-94 or is deceased
+ - match_flag: Match flag - Match of arrival and departure records
+ 
+ 
+======== dim_person table ========
+ - person_id: Unique identifier (PK)
+ - birth_year: 4 digit year of birth
+ - gender: Non-immigrant sex
+
+
+======== dim_visa table ========
+ - visa_id: Unique identifier (PK)
+ - i94visa: Visa codes collapsed into three categories
+ - visatype: Class of admission legally admitting the non-immigrant to temporarily stay in U.S.
+ - visapost: Department of State where where Visa was issued
+
+
+======== dim_country table ========
+ - i94res: 3 digit code for immigrant country of residence (PK)
+ - country_name: Name of country
+
+
+======== dim_state table ========
+ - state_code: Code of the state (PK)
+ - state: US State
+ - median_age: The median population age
+ - male_population: Male population total
+ - female_population: Female population total
+ - total_population: Total population
+ - average_household_size: Average size of houses in the state
+ - foreign_born: Number of residents who were not born in the state
+ 
+
+======== dim_time table ========
+ - arrdate: Arrival Date in the USA (PK)
+ - arrival_date: Arrival Date
+ - day: Day of arrival
+ - week: Week of arrival
+ - month: Month of arrival
+ - year: Year of arrival
+ - weekday: Day of week of arrival
+
+
+======== fact_immigration table ========
+ - cicid: Unique identifier (PK)
+ - ident: Unique identifier (FK)
+ - status_flag_id: Unique identifier (FK)
+ - person_id: Unique identifier (FK)
+ - visa_id: Unique identifier (FK)
+ - arrdate: Arrival Date in the USA (FK)
+ - state_code: Code of the state (FK)
+ - i94res: 3 digit code for immigrant country of residence (FK)
+ - depdate: Departure Date from the USA
+ - i94mode: Mode of transportation (1 = Air; 2 = Sea; 3 = Land; 9 = Not reported)
+ - i94port: Port of admission
+ - i94cit: 3 digit code for immigrant country of birth
+ - i94addr: USA State of arrival
+ - airline: Airline used to arrive in U.S.
+ - fltno: Flight number of Airline used to arrive in U.S.
